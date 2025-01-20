@@ -523,6 +523,17 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1481.70
    end,
 })
 
+local PrisonTab = Window:CreateTab("🚓 Prison Life", nil) -- Title, Image
+
+local PrisonSection = PrisonTab:CreateSection("Main")
+
+local Button1 = PrisonTab:CreateButton({
+   Name = "Tiger Admin",
+   Callback = function()
+        loadstring(game:HttpGet('https://rawscripts.net/raw/Prison-Life-Tiger-Admin-V3-16127'))()
+   end,
+})
+
 local MiscTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
 
 local MiscSection = MiscTab:CreateSection("Main")
