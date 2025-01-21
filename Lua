@@ -645,6 +645,20 @@ local Button1 = MiscTab:CreateButton({
    end,
 })
 
+local Button = MiscTab:CreateButton({
+    Name = "Remove All Textures",
+    Callback = function()
+            for _, obj in ipairs(game:GetDescendants()) do
+                if obj:IsA("Texture") or obj:IsA("Decal") then
+                    obj:Destroy()
+                end
+                if obj:IsA("BasePart") then
+                    obj.Material = Enum.Material.SmoothPlastic
+                end
+            end
+    end,
+ })
+
 local SkibidiSection = MiscTab:CreateSection("Trolling")
 
 local Button1 = MiscTab:CreateButton({
