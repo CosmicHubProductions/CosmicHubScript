@@ -202,6 +202,23 @@ loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\
    end,
 })
 
+local ButtonNig = ExploitsTab:CreateButton({
+    Name = "Teleport Tool",
+    Callback = function()
+        mouse = game.Players.LocalPlayer:GetMouse()
+        tool = Instance.new("Tool")
+        tool.RequiresHandle = false
+        tool.Name = "Teleporter"
+        tool.ToolTip = "Equip + click = tp"
+        tool.Activated:connect(function()
+        local pos = mouse.Hit+Vector3.new(0,2.5,0)
+        pos = CFrame.new(pos.X,pos.Y,pos.Z)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+        end)
+        tool.Parent = game.Players.LocalPlayer.Backpack
+    end,
+})
+
 local TPTab = Window:CreateTab("🔫 North London", nil) -- Title, Image
 local TPSection = TPTab:CreateSection("Visual")
 local Button = TPTab:CreateButton({
@@ -667,3 +684,18 @@ local Button1 = MiscTab:CreateButton({
         loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-jerk-off-25958'))()
    end,
 })
+
+local MiscccSection = MiscTab:CreateSection("Credits")
+
+local Buttonmm = MiscTab:CreateButton({
+    Name = "Join the Community",
+    Callback = function()
+        setclipboard("https://discord.gg/crhtZcGCHB")
+        Rayfield:Notify({
+            Title = "☄️ Cosmic Hub",
+            Content = "Discord Server link has been copied!",
+            Duration = 6.5,
+            Image = 124144713366592,
+         })
+    end,
+ })
