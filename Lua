@@ -539,7 +539,7 @@ local BallTab = Window:CreateTab("🏀 Blade Ball", nil) -- Title, Image
 local BallSection = BallTab:CreateSection("Main")
 
 local Button1 = BallTab:CreateButton({
-   Name = "Auto Hit",
+   Name = "Hit Macro",
    Callback = function()
         local RunService = game:GetService("RunService") or game:FindFirstDescendant("RunService")
 local Players = game:GetService("Players") or game:FindFirstDescendant("Players")
