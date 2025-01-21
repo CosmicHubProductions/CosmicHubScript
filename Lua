@@ -231,7 +231,7 @@ local BABFTTab = Window:CreateTab("🛶 Build A Boat", nil) -- Title, Image
 local BABFTSection = BABFTTab:CreateSection("Main")
 
 local Button1 = BABFTTab:CreateButton({
-   Name = "Auto Farm",
+   Name = "Auto Farm V1",
    Callback = function()
         local args = { [1] = true } workspace.RefreshLocks:FireServer(unpack(args))
 noclip = false
@@ -277,6 +277,129 @@ for i=1, math.huge do
 wait(200)
 game.Players.LocalPlayer.Character.Head:Destroy() end
    end,
+})
+
+local AutoFarm1 = BABFTTAB:CreateToggle({
+    Name = "Auto Farm V2",
+    CurrentValue = false,
+    Flag = "",
+    Callback = function(Value)
+        getgenv().AF = Value
+        local isFarming = false
+
+        local function startAutoFarm()
+            if Value == false then return end
+
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart") -- What are you looking for, basket ? :) no skid ;)
+
+            local newPart = Instance.new("Part")
+            newPart.Size = Vector3.new(5, 1, 5)
+            newPart.Transparency = 1
+            newPart.CanCollide = true
+            newPart.Anchored = true
+            newPart.Parent = workspace
+
+            local decal = Instance.new("Decal")
+            decal.Texture = "rbxassetid://139953968294114"
+            decal.Face = Enum.NormalId.Top 
+            decal.Parent = newPart
+
+            local function TPAF(iteration)
+            if not Silent then
+                if Value == false then return end
+                if iteration == 5 then
+                    firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
+                    task.delay(0.8, function()
+                        workspace.ClaimRiverResultsGold:FireServer()
+                    end)
+
+                    humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
+                else
+                    if iteration == 1 then
+                        humanoidRootPart.CFrame = CFrame.new(160.16104125976562, 29.595888137817383, 973.813720703125)
+                    else
+                    humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
+                    end
+                end
+                newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
+
+                wait(2.3) -- if lower, it can't work every time
+                if iteration == 1 then
+                    wait(2.3)
+                end
+                if iteration == 4 then
+                else
+                    workspace.ClaimRiverResultsGold:FireServer()
+                end
+            else
+                if Value == false then return end
+                if iteration == 1 then
+                    humanoidRootPart.CFrame = CFrame.new(160.16104125976562, 29.595888137817383, 973.813720703125)
+                elseif iteration == 5 then
+                    firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
+                    task.delay(0.8, function()
+                        workspace.ClaimRiverResultsGold:FireServer()
+                    end)
+                    
+                    humanoidRootPart.CFrame = CFrame.new(70.02417755126953, 138.9026336669922, 1371.6341552734375 + (iteration - 2) * 770)
+                else
+                    humanoidRootPart.CFrame = CFrame.new(70.02417755126953, 138.9026336669922, 1371.6341552734375 + (iteration - 2) * 770)
+                end
+                newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
+
+                wait(2.3) -- if lower, it can't work every time
+                if iteration == 1 then
+                    wait(2.3)
+
+                end
+                if iteration == 4 then
+                else
+                    workspace.ClaimRiverResultsGold:FireServer()
+                end
+            end
+            end
+
+            for i = 1, 10 do
+                if not Value then
+                    break
+                end
+                TPAF(i)
+            end
+
+            newPart:Destroy()
+        end
+
+                local function onCharacterRespawned()
+                    if getgenv().AF == true then
+                        if FcMaster == false then return end
+                    local character = player.Character or player.CharacterAdded:Wait()
+                    character:WaitForChild("HumanoidRootPart")
+                       -- wait(2)
+                    startAutoFarm()
+                    end
+                end
+
+        if Value then
+            Rayfield:Notify({
+                Title = "☄️ Cosmic Hub",
+                Content = "Auto Farm V2 Enabled!",
+                Duration = 6.5,
+                Image = 124144713366592,
+             })
+            game.Players.LocalPlayer.Character:BreakJoints()
+            wait(1)
+            game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterRespawned)
+        else
+            Rayfield:Notify({
+                Title = "☄️ Cosmic Hub",
+                Content = "Please, wait for the iteration to finish...",
+                Duration = 6.5,
+                Image = 124144713366592,
+             })
+            game.Players.LocalPlayer.CharacterAdded:Connect(function() end)
+        end
+    end,
 })
 
 local SKYWARSTab = Window:CreateTab("⚔️ Skywars Classic", nil) -- Title, Image
