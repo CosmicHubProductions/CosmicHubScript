@@ -77,17 +77,6 @@ local Input = MainTab:CreateInput({
    end,
 })
 
-local OtherSection = MainTab:CreateSection("Other")
-
-local Toggle = MainTab:CreateToggle({
-   Name = "Auto Farm",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        print("FARMING")
-   end,
-})
-
 local ExploitsTab = Window:CreateTab("🌐 Universal", nil) -- Title, Image
 local ExploitsSection = ExploitsTab:CreateSection("Main")
 
@@ -647,11 +636,20 @@ end)
 
 local MiscTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
 
-local MiscSection = MiscTab:CreateSection("Main")
+local MiscSection = MiscTab:CreateSection("Scripts")
 
 local Button1 = MiscTab:CreateButton({
    Name = "Infinite Yield",
    Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+local SkibidiSection = MiscTab:CreateSection("Trolling")
+
+local Button1 = MiscTab:CreateButton({
+   Name = "Jerk Off",
+   Callback = function()
+        loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-jerk-off-25958'))()
    end,
 })
