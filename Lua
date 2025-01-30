@@ -562,6 +562,13 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1481.70
    end,
 })
 
+local Button6 = FischTab:CreateButton({
+   Name = "Grand Reef",
+   Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3576.284912109375, 152.53366088867188, 523.2101440429688)
+   end,
+})
+
 local PrisonTab = Window:CreateTab("🚓 Prison Life", nil) -- Title, Image
 
 local PrisonSection = PrisonTab:CreateSection("Main")
